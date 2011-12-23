@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>jQuery SoundCloud</title>
+<link rel="stylesheet" href="http://www.tomasdev.dotcloud.com/resources/css/blueprint/screen.css" media="screen" />
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+<link rel="stylesheet" href="css/demo.css" media="screen" />
+<link rel="stylesheet" href="css/structure.css" media="screen" />
+
+</head>
+<body>
+	
+<div id="box">
+	<h1>jQuery SoundCloud</h1>
+	
+	<div id="test"></div>
+	<a href="http://soundcloud.com/tomasdev/just-a-test-for-the-api" class="soundcloud-player">My new dub track</a>
+	
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script src="js/soundcloud.player.api.js"></script>
+<script src="js/sc-player.js"></script>
+<script src="js/soundcloud.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+
+/*	$("#test").soundcloud({
+		clientId: '478b15bdf119b1d66b77befff679a6cc',
+		artist: 'generalhahn'
+	});*/
+	$.scPlayer.defaults.apiKey = '478b15bdf119b1d66b77befff679a6cc';
+	$.scPlayer.defaults.loadArtworks = 0;
+	$.scPlayer.defaults.beforeRender = function(songs){
+		var $player = $(this),
+			song = songs[0],
+			markup = '';
+		console.log(song);
+		markup += '<div class="title">' + song.user.username + ' - ' + song.title + '</div>';
+		markup += '<div class="subtitle">Released in ' + song.release + '</div>';
+		$player.find(".sc-play").html('&#9654;');
+		$player.find(".sc-pause").html('&quot;');
+		$player.prepend(markup);
+		$player.fadeIn(500);
+	};
+	$('.soundcloud-player').scPlayer();
+
+});
+</script>
+</body>
+</html>

@@ -21,7 +21,7 @@
 	$.fn.soundcloud = function(config){
 	
 		config = $.extend({
-			artists: 'ala'
+			
 		}, config);
 		
 		if( !config.clientId && !CLIENT_ID ){
